@@ -7,6 +7,8 @@ import java.util.* ;
 final class HttpRequest implements Runnable{
     final static String CRLF = "\r\n";
     Socket socket;
+	DataOutputStream os;
+	BufferedReader br;
     // Constructor
     
     public HttpRequest(Socket socket) throws Exception {
@@ -17,19 +19,19 @@ final class HttpRequest implements Runnable{
     public void run(){
         try {
             processRequest();
+			socket.close();
         } catch (Exception e) {
             System.out.println(e);
        	}
-		
     }
 
     private void processRequest() throws Exception{
         // Get a reference to the socket's input and output streams.
             InputStream is = new DataInputStream(socket.getInputStream());
-            DataOutputStream os = new DataOutputStream(socket.getOutputStream());
+            os = new DataOutputStream(socket.getOutputStream());
 
 	// Set up input stream filters. 
-            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         // Get the request line of the HTTP request message.
             String requestLine = br.readLine();
         // Display the request line.
@@ -82,9 +84,11 @@ final class HttpRequest implements Runnable{
 				sendBytes(fis, os);
 				fis.close();
 			} else {
-				os.writeBytes(entityBody);
+				os.write(entityBody.getBytes(), 0, entityBody.getBytes().length);
 			}
-	      
+	      		// Close streams and socket.
+		        os.close();
+		        br.close();
     	}
 	}
 	
