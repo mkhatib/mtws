@@ -7,7 +7,6 @@ import java.util.*;
 public class WebServer {
     public static void main(String argv[]) throws Exception {
         //set the port number - the port number isn't specified so we used the following.
-			System.out.println(argv[0]);
             int portNo = (new Integer(argv[0])).intValue();
         //establish the listen socket.
             ServerSocket listenSocket = new ServerSocket(portNo);
