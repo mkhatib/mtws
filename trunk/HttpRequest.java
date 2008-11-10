@@ -127,6 +127,46 @@ final class HttpRequest implements Runnable{
 		if(fileName.endsWith(".png")) {
 			return "image/png";
 		}
+		if(fileName.endsWith(".xls")) {
+			return "application/vnd.ms-excel";
+		}
+		if(fileName.endsWith(".pdf")) {
+			return "application/pdf";
+		}
+		if(fileName.endsWith(".doc")) {
+			return "application/msword";
+		}
+		if(fileName.endsWith(".ppt")) {
+			return "application/vnd.ms-powerpoint";
+		}
+		if(fileName.endsWith(".swf")) {
+			return "application/x-shockwave-flash";
+		}
+		if(fileName.endsWith(".mp3") || fileName.endsWith(".mpga")) {
+			return "audio/mpeg";
+		}
+		if(fileName.endsWith(".ram") || fileName.endsWith(".rm")) {
+			return "audio/x-pn-realaudio";
+		}
+		if(fileName.endsWith(".wav")) {
+			return "audio/x-wav";
+		}
+		if(fileName.endsWith(".rar")) {
+			return "application/x-rar-compressed";
+		}
+		if(fileName.endsWith(".zip")) {
+			return "application/zip";
+		}
+		if(fileName.endsWith(".xml") || fileName.endsWith(".xsl")) {
+			return "text/xml";
+		}
+		if(fileName.endsWith(".css")) {
+			return "text/css";
+		}
+		if(fileName.endsWith(".mov") || fileName.endsWith(".qt")) {
+			return "video/quicktime";
+		}
+		
 		return "application/octet-stream";
 	}
 }        
