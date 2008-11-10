@@ -8,7 +8,7 @@ final class HttpRequest implements Runnable{
     final static String CRLF = "\r\n";
     Socket socket;
 	DataOutputStream os;
-	BufferedReader br;
+	static BufferedReader br;
     // Constructor
     
     public HttpRequest(Socket socket) throws Exception {
@@ -20,6 +20,7 @@ final class HttpRequest implements Runnable{
         try {
             processRequest();
 			socket.close();
+			//br.close();
         } catch (Exception e) {
             System.out.println(e);
        	}
@@ -40,8 +41,8 @@ final class HttpRequest implements Runnable{
        // Get and display the header lines.
             String headerLine = null;
             while ((headerLine = br.readLine()).length() != 0) {
-            System.out.println(headerLine);
-            
+            	System.out.println(headerLine);
+            }
       // Extract the filename from the request line.
             StringTokenizer tokens = new StringTokenizer(requestLine);
             tokens.nextToken();  // skip over the method, which should be "GET"
@@ -84,15 +85,15 @@ final class HttpRequest implements Runnable{
 				sendBytes(fis, os);
 				fis.close();
 			} else {
-				os.write(entityBody.getBytes(), 0, entityBody.getBytes().length);
+				os.writeBytes(entityBody);
 			}
 	      		// Close streams and socket.
 		        os.close();
 		        br.close();
-    	}
+    	
 	}
 	
-	private static void sendBytes(FileInputStream fis, OutputStream os) throws Exception
+	private static void  sendBytes(FileInputStream fis, OutputStream os) throws Exception
 	{
 	   // Construct a 1K buffer to hold bytes on their way to the socket.
 	   byte[] buffer = new byte[1024];
@@ -102,6 +103,7 @@ final class HttpRequest implements Runnable{
 	   while((bytes = fis.read(buffer)) != -1 ) {
 	      os.write(buffer, 0, bytes);
 	   }
+		
 	}
 	
 	
