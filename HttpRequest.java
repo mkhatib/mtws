@@ -49,7 +49,7 @@ final class HttpRequest implements Runnable{
             String fileName = tokens.nextToken();
      // Prepend a "." so that file request is within the current directory.
             fileName = "." + fileName;
-            
+            String _404_img = "/www/404.jpg";
     // Open the requested file.
             FileInputStream fis = null;
             boolean fileExists = true;
@@ -68,7 +68,7 @@ final class HttpRequest implements Runnable{
 			} else {
 				statusLine = "HTTP/1.0 404 Not Found";
 				contentTypeLine = "Content-type: text/html" + CRLF;
-				entityBody = "<HTML>" + "<HEAD><TITLE>Not Found</TITLE></HEAD>" + "<BODY>Not Found</BODY></HTML>";
+				entityBody = "<HTML>" + "<HEAD><TITLE>Not Found</TITLE><style>.bottom{position:absolute;bottom:0;}</style></HEAD>" + "<BODY><center><img class='bottom' src="+ _404_img +" /></center></BODY></HTML>";
 			}
 			
 			// Send the status line.
