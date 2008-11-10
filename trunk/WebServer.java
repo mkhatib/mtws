@@ -1,13 +1,14 @@
-package programmingAssignment1;
+//package programmingAssignment1;
 
 import java.io.* ;
 import java.net.* ;
-import java.util.* ;
+import java.util.*;
 
 public class WebServer {
     public static void main(String argv[]) throws Exception {
         //set the port number - the port number isn't specified so we used the following.
-            int portNo = (new Integer(argv[1])).intValue();
+			System.out.println(argv[0]);
+            int portNo = (new Integer(argv[0])).intValue();
         //establish the listen socket.
             ServerSocket listenSocket = new ServerSocket(portNo);
         
