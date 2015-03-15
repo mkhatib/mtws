@@ -1,8 +1,2 @@
-Hey, You made it! 
-Congratulations!
-Start work on something now. 
-Good Luck.
+A Fair Implementation of a Multi Threaded Web Server that implements HTTP 1.0 (RFC: http://www.rfc-editor.org/rfc/rfc1945.txt)
 
-If you have any notes you can add them here. 
-
-Enjoy!
